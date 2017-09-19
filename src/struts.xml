@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="false"/>
+    <package name="default" extends="struts-default">
+
+        <action name="login">
+            <result></result>
+        </action>
+
+        <action name="loginprocess" class="project.action.LoginAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="login_teacher">teacherHome.jsp</result>
+            <result type="redirectAction" name="login_student">queryScore</result>
+            <result name="login_error">index.jsp</result>
+        </action>
+
+        <action name="logout" class="project.action.LoginAction" method="logout">
+            <result name="logout_success">index.jsp</result>
+        </action>
+
+        <action name="addCourse" class="project.action.AddCourseAction">
+            <result name="success">success.jsp</result>
+
+        </action>
+
+        <action name="queryStudent" class="project.action.QueryStudentAction">
+            <result name="success">students.jsp</result>
+        </action>
+
+        <action name="queryScore" class="project.action.QueryScoreAction">
+            <result name="success">studentScore.jsp</result>
+        </action>
+
+        <action name="queryCourse" class="project.action.QueryCourseAction">
+            <result name="success">courses.jsp</result>
+        </action>
+
+        <action name="editScore" class="project.action.EditScoreAction">
+            <result name="success">insertscore.jsp</result>
+        </action>
+
+        <action name="saveScore" class="project.action.SaveScoreAction" method="execute">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">success.jsp</result>
+        </action>
+    </package>
+
+
+</struts>
